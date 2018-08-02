@@ -1,5 +1,6 @@
 var mysql = require('mysql');
 var Timers = require('timers')
+const add = require('./add');
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -21,10 +22,11 @@ module.exports = function(app, db) {
         
         if ( result[0].password === pw){
           console.log(result[0]);
-          res.send((result));
+          add('e20150149',1,'04-08-18','01:00','F-404');
+          res.send(('Done'));
         }
         else{
-          res.write("Password Is Incorrect");
+          res.send("Username or Password Is Incorrect");
         }
         
     
@@ -61,7 +63,7 @@ module.exports = function(app, db) {
         //re=result.find(r => r.StudentID === uname);
         
         res.send((result));
-        res.end;
+        
       });
   });
 
