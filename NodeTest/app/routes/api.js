@@ -1,12 +1,13 @@
 var mysql = require('mysql');
-var Timers = require('timers')
 const add = require('./add');
 
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: ""
+  password: "",
+  //database : "studentattendence"
 });
+
 
 
 module.exports = function(app, db) {
@@ -45,9 +46,9 @@ module.exports = function(app, db) {
         if (err) throw err;
        // console.log(result[0]);
         //re=result.find(r => r.StudentID === uname);
-        res.send((result));
-        res.end;
+        res.json (result);
         
+      
       });
     
   });
