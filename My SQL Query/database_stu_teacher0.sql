@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: studentattendence
+-- Host: localhost    Database: studentattendence2
 -- ------------------------------------------------------
 -- Server version	5.7.19
 
@@ -37,7 +37,8 @@ CREATE TABLE `teacher` (
 
 LOCK TABLES `teacher` WRITE;
 /*!40000 ALTER TABLE `teacher` DISABLE KEYS */;
-INSERT INTO `teacher` VALUES ('T20150060','T20150060','Teacher');
+INSERT INTO `teacher` VALUES ('T001','Nou Sotheany','Image Processing');
+
 /*!40000 ALTER TABLE `teacher` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,3 +52,11 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2018-08-02 22:16:08
+
+
+
+
+
+
+
+

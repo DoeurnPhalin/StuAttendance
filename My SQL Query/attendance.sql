@@ -11,4 +11,5 @@ REFERENCES student(id) on update cascade,
 REFERENCES course(cid) on update cascade
 );
 insert into attendance values (1,1,'e20150149','2018-08-10 13:00:00','F-209','Present');
-insert into attendance values (1,1,'e20150160','2018-08-10 13:00:00','F-209','Present');
+insert into attendance (cid,sid,date,room,status) values (1,'e20150160','2018-08-10 13:00:00','F-209','Present');
+select* from attendance;

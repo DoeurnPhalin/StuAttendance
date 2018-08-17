@@ -50,3 +50,11 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2018-08-02 22:16:08
+
+insert into user values ('e20150149','e20150149','admin');
+select* from user;
+
+
+
+
+
