@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: database_stu
+-- Host: localhost    Database: studentattendence2
 -- ------------------------------------------------------
 -- Server version	5.7.19
 
@@ -25,8 +25,8 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) DEFAULT NULL,
-  `usertype` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`username`)
+  `usertype` varchar(50) NOT NULL,
+  PRIMARY KEY (`username`,`usertype`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

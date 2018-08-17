@@ -6,10 +6,10 @@ var con = mysql.createConnection({
     password: ""
   });
 
-module.exports= function(SID ,CID ,Date , Time , Room){
-  con.query("use studentattendence");
-  var sql="insert into studentattendance (StudentID,CourseID,CourseDate,Room,StudentStatus) value (?,?,?,?,?)";
-  var Val=[SID,CID,'18-08-05',Room,'Present'];
+module.exports= function(SID ,CID ,Date , Time , Room,status){
+  con.query("use studentattendence2");
+  var sql="insert into attendance (sid,cid,date,room,status) value (?,?,?,?,?)";
+  var Val=[SID,CID,Date,Room,status];
   con.query(sql,Val,function (err, result,) {
     if (err) throw err;
     else{

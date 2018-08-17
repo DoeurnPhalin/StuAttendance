@@ -56,7 +56,7 @@
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send();
     request.onreadystatechange = function() {
-        //console.log(this.responseText.toString());
+        console.log(this.responseText.toString());
         myObj = JSON.parse(this.responseText);
         txt = "<table border='1' id='demo'>";
         for (x in myObj) {
@@ -65,7 +65,7 @@
         txt += "</table>"
         document.getElementById("demo").innerHTML = txt;
 
-}
+    }
 }
 
 </script>

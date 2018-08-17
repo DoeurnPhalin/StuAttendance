@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: database_stu
+-- Host: localhost    Database: studentattendence
 -- ------------------------------------------------------
 -- Server version	5.7.19
 
@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `teacher`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `teacher` (
-  `TID` varchar(20) NOT NULL,
-  `Tname` varchar(50) DEFAULT NULL,
-  `Skill` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`TID`),
-  UNIQUE KEY `TID_UNIQUE` (`TID`)
+  `tid` varchar(20) NOT NULL,
+  `tname` varchar(50) DEFAULT NULL,
+  `skill` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`tid`),
+  UNIQUE KEY `TID_UNIQUE` (`tid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
