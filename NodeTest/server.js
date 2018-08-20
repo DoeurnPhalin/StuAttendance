@@ -6,7 +6,7 @@ const db             = require('./config/db');
 
 const app            = express();
 
-const port = 8000;
+const port  
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -16,6 +16,6 @@ app.use(function(req, res, next) {
 
 app.use(bodyParser.urlencoded({ extended: true }) );
 require('./app/routes')(app, {});
-app.listen(port, () => {
+app.listen((process.env.PORT || '8000'), () => {
 console.log('We are live on ' + port);
 });

@@ -41,7 +41,12 @@ module.exports = function(app, db) {
   });
   
   
-
+  app.get('/', (req,res) => {
+    
+     
+        res.json ("Hello now you are connected.");
+    
+  });
 
   app.get('/login/:username/:password', (req,res) => {
     uname=req.params.username;
