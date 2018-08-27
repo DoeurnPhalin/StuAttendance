@@ -5,17 +5,20 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "node .bin/www",
+    "start": "node server.js",
     "deploy": "gcloud app deploy"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/storage": "^1.7.0",
     "axios": "^0.18.0",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "knex": "^0.15.2",
     "mongodb": "^2.2.35",
-    "mysql": "^2.16.0"
+    "mysql": "^2.16.0",
+    "prompt": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

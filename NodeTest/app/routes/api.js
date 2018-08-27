@@ -10,25 +10,23 @@ var con = mysql.createConnection({
 
 
 
-
 module.exports = function(app, db) {
   con.query("use studentattendence2", function(){
     console.log("connected to db");
   });
   app.post('/QRpresent', (req, res) => {
     // You'll create your note here.
-    var uname=req.body.Username;
-    var pw=req.body.Password;
-    
-
-      con.query("SELECT * FROM user where username=? and password =?",[uname,pw], function (err, result, fields) {
+    var uname=req.body.id;
+    var date=req.body.date;
+    var cid=req.body.cid;
+      con.query("SELECT * attendance where sid=? and date=? and cid=?",[uname,date,cid], function (err, result, fields) {
         if (err) throw err;
-        if(result.usertype==='admin'){
-          console.log('User cannot add');
+        if(!result){
+          console.log("You are not in this course");
         }
-        else if ( result[0].password === pw){
+        else if (result){
           console.log(result[0]);
-          add('e20150149',1,'04-08-18','01:00','F-404',"Present");
+          //add('e20150149',1,'04-08-18','01:00','F-404',"Present");
           res.send(('Done'));
         }
         else{
@@ -63,9 +61,12 @@ module.exports = function(app, db) {
   });
 
 
-  app.get('/attendance/:username/:courseID', (req,res) => {
+  app.post('/attendance/:username/:courseID', (req,res) => {
     uname=req.params.username;
     CID=parseInt(req.params.courseID,10);
+    date=req.body.date;
+    console.log(date);
+    if(!date){
       con.query("SELECT * FROM attendance where sid=? and cid=?",[uname,CID], function (err, result, fields) {
         if (err) throw err;
        // console.log(result[0]);
@@ -74,16 +75,27 @@ module.exports = function(app, db) {
         res.send((result));
         
       });
+    }
+    else{
+      con.query("select* from attendance where sid=? and cid=? and date like ?",[uname,CID,date],function(err,result,fields){
+        if(err) res.send(err);
+        else{
+          res.json(result);
+        }
+      });
+    }
   });
   
   app.post('/startclass', (req,res)=>{
+
     cid=parseInt(req.body.cid,10);
+    
       con.query("select sid from studentcourse where cid=?",cid, function(err,result,fields){
         if (err) throw err;
         else {
         for(x in result){
           
-          add(result[x].sid,cid,"2018-08-10 09:00:00","9:00",'F-209',"Absent");
+          add(result[x].sid,cid,req.body.date,req.body.time,req.body.room,"Absent");
         }
         res.send("Done");
       }
@@ -96,12 +108,32 @@ module.exports = function(app, db) {
       res.send("Work");
     }
     else if(method==='update'){
+      con.query("update user set password=? and usertype=? where username=?",[req.body.password,req.body.usertype,req.body.username],function(err,result,fields){
+        if(err) res.send(err);
+        else{
+          res.send("Done");
+        }
+      });
 
     }
     else if(method ==='remove'){
+      con.query("delete from user where username=?",req.body.username, function(err,result,fields){
+          if (err) {
+            res.send(err);
+          }
+          else{
+            res.send("Done");
+          }
+      });
 
     }
     else {
+      con.query("select username from user",function(err,result,fields){
+        if(err) res.send(err);
+        else {
+          res.json(result);
+        }
+      });
 
     }
   });
@@ -122,9 +154,7 @@ module.exports = function(app, db) {
         else{
           res.send('Done');
         }
-      }
-    );
-
+      });
     }
     else if(method==='update'){
 
@@ -142,16 +172,34 @@ module.exports = function(app, db) {
 
   });
 
+
+
   app.get('/student',(req,res)=>{
-      console.log("Show all student");
+      con.query("select* from student", function(err,result,fields){
+        if (err) res.send(errs);
+        else{
+          res.json(result);
+        }
+      })
   });
 
-  app.get('/techer',(req,res)=>{
-      console.log("Show all teacher");
+  app.get('/teacher/',(req,res)=>{
+      con.query("select* from teacher ", function(err,result,fields){
+          if(err) res.send(err);
+          else{
+            res.json(result);
+          }
+      });
+  
   });
 
   app.get('/course',(req,res)=>{
-      console.log("Show all course")
+      con.query("select* from course",function(err,result,fields){
+        if(err) res.send(err);
+        else{
+          res.json(result);
+        }
+      });
   })
 };
   
